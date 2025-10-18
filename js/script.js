@@ -33,9 +33,19 @@ function renderTasks() {
 function deleteAllTasks() {
     taskDb = []; // Clear the tasks database
     renderTasks(); // Re-render the task list
+
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = 'No tasks available.'; // Show no tasks message
 
+    // Clear input fields
+    let taskInput = document.getElementById('todo-input');
+    let taskDate = document.getElementById('todo-date');
+    let taskStatus = document.getElementById('todo-status');
+    let statusFilter = document.getElementById('filter-status');
+    taskInput.value = '';
+    taskDate.value = '';
+    taskStatus.value = '';
+    statusFilter.value = ' ';
 }
 
 function filterTasks() {
@@ -49,7 +59,7 @@ function filterTasks() {
         renderTasks(filteredTasks);
     } 
     
-    if (statusFilter.value === 'all' || FilterAll.checked) {
+    if (statusFilter.value === 'all') {
         const allTasks = taskDb;
         filterDb.push(allTasks);
         renderTasks(allTasks);
